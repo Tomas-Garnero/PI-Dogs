@@ -1,0 +1,173 @@
+.detail-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    background-image: url(./Detail-Bg1.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card-container {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    overflow:auto;
+    backdrop-filter: blur(6px);
+    margin: 6px;
+    left: 30px;
+    right: 30px;
+    top: 30px;
+    bottom: 30px;
+    box-shadow: 0px 0px 20px 8px rgb(0, 0, 0);
+    /* box-shadow: 0px 0px 20px 8px white; */
+    border-radius: 20px;
+    border: 2px solid #0d303e;
+}
+
+.card-container::-webkit-scrollbar{
+    background-color: rgba(196, 133, 16, 0);
+}
+
+.card-container::-webkit-scrollbar-thumb{
+    background-color: rgba(102, 68, 5, 0.589);
+    border-radius: 3ex;
+}
+
+.card-detail {
+    margin: 15px;
+    border-radius: 20px;
+}
+
+.img-back{
+    border-radius: 55px;
+    position: fixed;
+    flex-direction: column;
+    left: 16px;
+    width: 72px;
+    /* background-color: #00000046; */
+    background-color: rgba(255, 255, 255, 0.301);
+    transition: 0.3s;
+    animation: ease;
+    /* animation: ease-in-out; */
+    box-shadow: 0px 0px 10px 0px rgb(175 26 132);
+}
+
+.img-back:hover{
+    transform: scale(1.1);
+    box-shadow: 0ex 0ex 2.5ex 0.5ex rgb(175 26 132);
+}
+
+.name {
+    margin: 8px 5px;
+    font-family: "Segoe Print";
+    font-size: 35px;
+    text-align: center;
+    color:rgb(252, 226, 192);
+    font-weight: normal;
+    text-shadow: 2px 3px 4px rgb(0, 0, 0)
+}
+
+.weight-height-life {
+    margin: 8px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-text-stroke: 0.05ex rgb(0, 0, 0);
+    color:rgba(247, 75, 209, 0.842);
+    text-shadow: 2px 3px 4px rgb(0, 0, 0);
+    font-family: "Comic Sans MS";
+    font-size: 18px;
+    
+}
+
+.text {
+    margin: 5px;
+}
+
+.temperaments {
+    margin: 8px 5px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    /* text-shadow: 0.1ex 0.1ex 0.05ex cornsilk; */
+    text-shadow: 0ex 0ex 1ex cornsilk;
+    -webkit-text-stroke: 0.02ex wheat;
+    font-family: "Comic Sans MS";
+}
+
+.img-detail {
+    max-width: 600px;
+    margin: auto
+}
+
+.img-dog {
+    border-radius: 50px;
+    margin-top: 15px;
+    width: auto;
+    height: 370px;
+}
+
+.not-found {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./Not-Found.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+.cargando {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    width: 15%;
+    height: 24%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.volver{
+    margin-top: 386px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: rgba(187, 8, 77, 0.774);
+    font-family: "Segoe Print";
+    font-size: 18px;
+    font-weight: 999;
+    text-decoration: none;
+
+    border-width: 2px;
+    border-color: rgb(78 82 15);
+    border-style: groove;
+    /* border: [border-width || border-style || border-color | inherit] ; */
+    border-radius: 50px;
+
+    background-color: rgba(0, 0, 0, 0.74);
+    backdrop-filter: blur(2px);
+    transition: 0.3s;
+    animation: ease;
+    /* animation: ease-in-out; */
+    box-shadow: 0px 0px 10px 5px rgb(175 26 132);
+}
+
+.volver:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 0px 15px 10px rgb(175 26 132);
+}

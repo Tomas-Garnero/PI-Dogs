@@ -1,0 +1,50 @@
+.div-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 5px;
+    padding: 5px;
+    width: 300px;
+}
+
+.input-search{
+    width: 175px;
+    height: 25px;
+    margin: 5px;
+    padding: 5px;
+    /* font-family: "Lucida Sans Typewriter"; */
+    /* font-family: inherit; */
+    font-size: 15px;
+    font-weight: 650;
+    /* text-decoration: none; */
+    border-radius: 50px;
+    border: 2px solid #2d4651b8;
+
+    /* color: rgb(255, 255, 255); */
+    color: rgb(117 122 26);
+    background-color: rgba(0, 0, 0, 0.603);
+
+}
+
+.btn-search{
+    cursor: pointer;
+    border: none;
+    /* width: 4.75ex; */
+    width: 67px;
+    height: 67px;
+    padding-left: 1px;
+    padding-right: 1px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.btn-search:hover{
+    transform: scale(1.2);
+}
+
+.lupa-icon {
+    height: 65px;
+    width: 65px;
+    background-color: rgba(0, 0, 0, 0);
+    place-items: center;
+}

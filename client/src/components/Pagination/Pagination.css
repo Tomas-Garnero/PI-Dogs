@@ -1,0 +1,31 @@
+.btn-numbers {
+    height: 33px;
+    width: 33px;
+    margin: 3.5px;
+
+    color: rgb(255, 255, 255);
+    font-family: "Segoe Print";
+    font-weight: 800;
+
+    background-color: #000000a2;
+    border-radius: 50px;
+    /* border: transparent; */
+    /* border: 1px solid white; */
+    border: 2px solid #2d4651b8;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.btn-numbers:hover {
+    transition-delay: 0s;
+    /* color: rgb(255, 255, 255); */
+    color: rgb(175 26 132);
+    transform: translateY(1ex);
+}
+
+.btn-numbers:active {
+    transition-delay: 0s;
+    color: rgb(175 26 132);
+    box-shadow: 0 0 20px 1.5px rgb(219, 219, 219); 
+    transform: translateY(1ex);  
+}

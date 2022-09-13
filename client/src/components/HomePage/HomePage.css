@@ -1,0 +1,63 @@
+*{
+    text-shadow: 1px 1px 4px #000000;
+}
+.body::-webkit-scrollbar{
+    background-color: rgba(196, 133, 16, 0);
+}
+.body::-webkit-scrollbar-thumb{
+    background-color: rgba(102, 68, 5, 0.589);
+    border-radius: 3ex;
+}
+
+.home {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(./Home-img.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.navbar {
+    width: 900px;
+    height: 50px;
+    /* text-decoration: none; */
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    font-family: "Segoe Print";
+    /* font-family: inherit; */
+    /* font-weight: 500; */
+    color: rgb(255, 255, 255);
+    /* background-color: rgba(0, 0, 0, 0.568); */
+    background-color: #8f62ef36;
+    margin: 10px;
+}
+
+.container{
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    position: sticky;
+    margin-top: 40px;
+}
+
+.loading {
+    background-repeat:repeat;
+    display:block;
+    width: 100%;
+    height: 100%;
+    margin-left:auto;
+    margin-right:auto;
+}
