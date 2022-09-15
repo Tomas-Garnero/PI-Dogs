@@ -39,6 +39,7 @@ export default function DogCreate() {
         image: "",
         temperament: []
     });
+    console.log(input)
 
     useEffect(() => {
         dispatch(getTemperaments());
@@ -56,10 +57,12 @@ export default function DogCreate() {
     }
 
     function handleSelect(e) {
-        setInput({
-            ...input,
-            temperament: [...input.temperament, e.target.value]
-        })
+        if (!input.temperament.includes(e.target.value)) {
+            setInput({
+                ...input,
+                temperament: [...input.temperament, e.target.value]
+            })
+        }
     }
 
     function handleDelete(e) {
@@ -71,12 +74,9 @@ export default function DogCreate() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setErrors(validate(input));
         const errorSaver = validate(input);
-        if (Object.values(errorSaver).length !== 0) {
-            alert("Error: Completa los campos con valores que cumplan las condiciones para crear tu Raza");
-
-        } else {
+        setErrors(errorSaver);
+        if (Object.values(errorSaver).length === 0) {
             dispatch(postDog(input));
             navigate("/home");
             alert("Raza creada!");
@@ -99,131 +99,169 @@ export default function DogCreate() {
         <div className="create-bg">
 
             <div className="div-refresh">
-                <button className="refresh-btn" type="submit" onClick={refreshPage}>
-                    <img className="refresh-icon" src={reload} alt="" width="35px"/>
-                </button>
-
-                <div className="home-btn">
+                
+                <div className="div-home-btn">
                     <Link className="link-home" to="/home">
                         <img className="icon-home" src={homeIcon} alt="" width="35px"/>
-                        ⬅ Home
+                        ⬅Home
                     </Link>
                 </div>
-
-                <h1 className="create-title">Crea tu nueva Raza</h1>
+                <div>
+                    <button className="refresh-btn" type="submit" onClick={refreshPage}>
+                        <img className="refresh-icon" src={reload} alt="" width="35px"/>
+                    </button>
+                </div>
+                
             </div>
+
+            <h1 className="create-title">Crea tu nueva Raza</h1>
 
             <div className="create-container">
 
                 <div className="props-container">
 
                     <div className="breed">
-                        <label>Nombre Raza:</label>
-                        <input 
-                        className="inputs" 
-                        type="text"
-                        name="name"
-                        value={input.name = input.name.substring(0,1).toUpperCase() + input.name.substring(1)}
-                        onChange={(e) => handleChange(e)}
-                        />
-                        {errors.name && <p className="error">{errors.name}</p>}
-                    </div>
-
-                    <div className="minWeight">
-                        <label>Peso Mínimo:</label>
-                        <input 
-                        className="inputs" 
-                        type="number"
-                        min="1"
-                        max="99"
-                        name="minWeight"
-                        value={input.minWeight}
-                        onChange={(e) => handleChange(e)}
-                        />
-                        {errors.minWeight && <p className="error">{errors.minWeight}</p>}
-                    </div>
-
-                    <div className="maxWeight">
-                        <label>Peso Máximo:</label>
-                        <input 
-                        className="inputs" 
-                        type="number"
-                        min="1"
-                        max="99"
-                        name="maxWeight"
-                        value={input.maxWeight}
-                        onChange={(e) => handleChange(e)}
-                        />
-                        {errors.maxWeight && <p className="error">{errors.maxWeight}</p>}
-                    </div>
-
-                    <div className="minHeight">
-                        <label>Altura Mínima:</label>
-                        <input 
-                        className="inputs" 
-                        type="number"
-                        min="1"
-                        max="99"
-                        name="minHeight"
-                        value={input.minHeight}
-                        onChange={(e) => handleChange(e)}
-                        />
-                        {errors.minHeight && <p className="error">{errors.minHeight}</p>}
-                    </div>
-
-                    <div className="maxHeight">
-                        <label>Altura Máxima:</label>
-                        <input 
-                        className="inputs" 
-                        type="number"
-                        min="1"
-                        max="99"
-                        name="maxHeight"
-                        value={input.maxHeight}
-                        onChange={(e) => handleChange(e)}
-                        />
-                        {errors.maxHeight && <p className="error">{errors.maxHeight}</p>}
-                    </div>
-
-                    <div className="minLife">
-                        <label>Esperanza de vida Mínima:</label>
-                        <input 
-                        className="inputs"
-                        type="number"
-                        min="1"
-                        max="21"
-                        name="minLife"
-                        value= {input.minLife}
-                        onChange={(e) => handleChange(e)}
-                        /> 
-                        {errors.minLife && <p className="error">{errors.minLife}</p>}
-                    </div>
-
-                    <div className="maxLife">
-                        <label>Esperanza de vida Máxima:</label>
-                        <input 
-                        className="inputs"
-                        type="number"
-                        min="1"
-                        max="21"
-                        name="maxLife"
-                        value= {input.maxLife}
-                        onChange={(e) => handleChange(e)}
-                        /> 
-                        {errors.maxLife && <p className="error">{errors.maxLife}</p>}
+                        <div className="div-flex">
+                            <label className="label">Nombre de la Raza:</label>
+                            <input 
+                            className="inputs" 
+                            type="text"
+                            name="name"
+                            value={input.name = input.name.substring(0,1).toUpperCase() + input.name.substring(1)}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.name && <p className="error">{errors.name}</p>}
+                        </div>
                     </div>
 
                     <div className="image-create">
-                        <label>Imagen:</label>
-                        <input 
-                        className="inputs"
-                        type="text"
-                        placeholder="URL de la imagen"
-                        name="image"
-                        value= {input.image}
-                        onChange={(e) => handleChange(e)}/>
+                        <div className="div-flex">
+                            <label className="label">Imagen:</label>
+                            <input 
+                            className="inputs"
+                            type="text"
+                            placeholder="URL de la imagen"
+                            name="image"
+                            value= {input.image}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.image && <p className="error">{errors.image}</p>}
+                        </div>
                     </div>
 
+                    <div className="minWeight">
+                        <div className="div-flex">
+                            <label className="label">Peso Mínimo:</label>
+                            <input 
+                            className="inputs" 
+                            type="number"
+                            min="1"
+                            max="99"
+                            name="minWeight"
+                            value={input.minWeight}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.minWeight && <p className="error">{errors.minWeight}</p>}
+                        </div>
+                    </div>
+
+                    <div className="maxWeight">
+                        <div className="div-flex">
+                            <label className="label">Peso Máximo:</label>
+                            <input 
+                            className="inputs" 
+                            type="number"
+                            min="1"
+                            max="99"
+                            name="maxWeight"
+                            value={input.maxWeight}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.maxWeight && <p className="error">{errors.maxWeight}</p>}
+                        </div>
+                    </div>
+
+                    <div className="minHeight">
+                        <div className="div-flex">
+                            <label className="label">Altura Mínima:</label>
+                            <input 
+                            className="inputs" 
+                            type="number"
+                            min="1"
+                            max="99"
+                            name="minHeight"
+                            value={input.minHeight}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.minHeight && <p className="error">{errors.minHeight}</p>}
+                        </div>
+                    </div>
+
+                    <div className="maxHeight">
+                        <div className="div-flex">
+                            <label className="label">Altura Máxima:</label>
+                            <input 
+                            className="inputs" 
+                            type="number"
+                            min="1"
+                            max="99"
+                            name="maxHeight"
+                            value={input.maxHeight}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div>
+                        <div className="div-error">
+                            {errors.maxHeight && <p className="error">{errors.maxHeight}</p>}
+                        </div>
+                    </div>
+
+                    <div className="minLife">
+                        <div className="div-flex">
+                            <label className="label">Esperanza de vida Mínima:</label>
+                            <input 
+                            className="inputs"
+                            type="number"
+                            min="1"
+                            max="21"
+                            name="minLife"
+                            value= {input.minLife}
+                            onChange={(e) => handleChange(e)}
+                            /> 
+                        </div>
+                        <div className="div-error">
+                            {errors.minLife && <p className="error">{errors.minLife}</p>}
+                        </div>
+                    </div>
+
+                    <div className="maxLife">
+                        <div className="div-flex">
+                            <label className="label">Esperanza de vida Máxima:</label>
+                            <input 
+                            className="inputs"
+                            type="number"
+                            name="maxLife"
+                            value= {input.maxLife}
+                            onChange={(e) => handleChange(e)}
+                            />
+                        </div> 
+                        <div className="div-error">
+                            {errors.maxLife && <p className="error">{errors.maxLife}</p>}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="div-temperaments">
                     <div>
                         <select className="list-temp" onChange={(e) => handleSelect(e)}>
                             <option hidden>Temperamentos de la Raza:</option>
@@ -239,14 +277,23 @@ export default function DogCreate() {
                                 <p className="p-items" key={e}>
                                     {temperament.find(temp => temp.id === Number(e))?.name}
                                     <button className="remove-btn" onClick={() => handleDelete(e)}>
-                                        <img className="icon-remove" src={remove} alt="" weight="15px" height="15px"/>
+                                        <img className="icon-remove" src={remove} alt="" weight="16px" height="16px"/>
                                     </button>
                                 </p>
                             )
                         })}
                     </div>
+                </div>
 
-                    <div>
+                {(Object.values(errors).length !== 0) &&
+                        <div className="div-errors">
+                        <p className="p-errors">
+                            Completa los campos con valores que cumplan las condiciones para crear tu Raza
+                        </p> 
+                        </div>
+                }
+
+                <div className="div-create-btn">
                         <button 
                         className="create-race" 
                         type="submit"
@@ -255,8 +302,8 @@ export default function DogCreate() {
                         >
                             CREAR RAZA
                         </button>
-                    </div>
                 </div>
+
             </div>
         </div>
     )

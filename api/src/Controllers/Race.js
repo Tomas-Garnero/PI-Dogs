@@ -66,7 +66,7 @@ const getDBInfo = async () => {
                 weight: weightMin_Max,
                 image: dog.image,
                 temperament: dog.Temperaments?.reduce((prev, curr) => {
-                    prev += curr.name + ",";
+                    prev += curr.name + ", ";
                     return prev;
                 }, ""),
                 createdAtDb: dog.createdAtDb
@@ -202,7 +202,7 @@ const getDetailsDBInfo = async () => {
                 life_span: life,
                 image: dog.image,
                 temperament: dog.Temperaments?.reduce((prev, curr) => {
-                    prev += curr.name + ",";
+                    prev += curr.name + ", ";
                     return prev;
                 }, ""),
                 createdAtDb: dog.createdAtDb,
