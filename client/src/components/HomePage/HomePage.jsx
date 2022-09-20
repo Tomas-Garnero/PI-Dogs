@@ -45,7 +45,7 @@ export default function HomePage() {
     const indexLastDog = pagination.current * dogsPerPage;  
     // declaro que el indice del primer perro va a ser igual al indice del último perro menos los perros por página
     const indexFirstDog = indexLastDog - dogsPerPage;
-    console.log(allDogs)
+    // console.log(allDogs)
     // guardo en la variable declarada una porcion del array total de perros, la cual va a ir desde el indice del primer perro hasta el indice del ultimo perro sin incluirlo
     const currentDog = allDogs.slice(indexFirstDog, indexLastDog)  // slice divide un array segun lo que le pase por parámetro
 

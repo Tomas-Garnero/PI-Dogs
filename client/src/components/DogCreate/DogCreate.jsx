@@ -39,11 +39,11 @@ export default function DogCreate() {
         image: "",
         temperament: []
     });
-    console.log(input)
+    // console.log(input)
 
     useEffect(() => {
         dispatch(getTemperaments());
-    }, [])
+    }, [dispatch])
 
     function refreshPage() {
         window.location.reload(false);
@@ -159,8 +159,6 @@ export default function DogCreate() {
                             <input 
                             className="inputs" 
                             type="number"
-                            min="1"
-                            max="99"
                             name="minWeight"
                             value={input.minWeight}
                             onChange={(e) => handleChange(e)}
@@ -177,8 +175,6 @@ export default function DogCreate() {
                             <input 
                             className="inputs" 
                             type="number"
-                            min="1"
-                            max="99"
                             name="maxWeight"
                             value={input.maxWeight}
                             onChange={(e) => handleChange(e)}
@@ -195,8 +191,6 @@ export default function DogCreate() {
                             <input 
                             className="inputs" 
                             type="number"
-                            min="1"
-                            max="99"
                             name="minHeight"
                             value={input.minHeight}
                             onChange={(e) => handleChange(e)}
@@ -213,8 +207,6 @@ export default function DogCreate() {
                             <input 
                             className="inputs" 
                             type="number"
-                            min="1"
-                            max="99"
                             name="maxHeight"
                             value={input.maxHeight}
                             onChange={(e) => handleChange(e)}
@@ -231,8 +223,6 @@ export default function DogCreate() {
                             <input 
                             className="inputs"
                             type="number"
-                            min="1"
-                            max="21"
                             name="minLife"
                             value= {input.minLife}
                             onChange={(e) => handleChange(e)}

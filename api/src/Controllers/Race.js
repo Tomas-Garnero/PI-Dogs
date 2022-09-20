@@ -147,6 +147,21 @@ const getDetailsApiInfo = async () => {
     }
 };
 
+// var promise = new Promise(function(resolve, reject) {
+//     const data = fetch('www.UnaAPICualquiera.com');
+
+//     if(data) {resolve(data)} 
+//     else {reject('No conseguí la data')}
+
+// })
+
+// promise
+// 		.then(succesfullHandler)
+// 		.then(succesfullHandler)
+// 		.then(succesfullHandler)
+// 		.catch(err => console.log(err))
+
+
 const getDetailsDBInfo = async () => {
     try {
         let dogDB = await Race.findAll({
@@ -226,6 +241,34 @@ const getDetailsDogs = async () => {
         console.log(error);
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = {

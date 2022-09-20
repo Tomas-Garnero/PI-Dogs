@@ -19,7 +19,7 @@ export default function NavBar({byOrder, byTemperament, byCreated}) {
         }
         return 0;
     })
-    console.log(allTemperaments)
+    // console.log(allTemperaments)
 
     useEffect(() => {
         dispatch(getDogs());
