@@ -24,32 +24,19 @@ export default function HomePage() {
     const allDogs = useSelector((state) => state.dogs);
     const pagination = useSelector((state) => state.paginado);
     const allTemperaments = useSelector((state) => state.temperaments);
-    // allTemperaments.sort(function (a, b) {
-    //     if (a > b) {
-    //         return 1;
-    //     }
-    //     if (b > a) {
-    //         return -1
-    //     }
-    //     return 0;
-    // })
 
-    // este estado local sirve para q se renderize el ordenamiento
     const [ordering , setOrdering] = useState("");
 
-    // declaro un estado local, en donde declaro la pagina actual y la funcion seteadora de la pagina actual. Y que la pagina actual comienze en 1
     const [currentPage, setCurrentPage] = useState(1);
-    // declaro otro estado local en donde tengo la catidad de perros por pagina y la funcion seteadora. Ademas arranco en 8
+    
     const [dogsPerPage, setDogsPerPage] = useState(8);
-    // declaro que el indice del ultimo perro va a ser igual a la pagina actual multiplicado por los perros por pagina
+    
     const indexLastDog = pagination.current * dogsPerPage;  
-    // declaro que el indice del primer perro va a ser igual al indice del último perro menos los perros por página
+   
     const indexFirstDog = indexLastDog - dogsPerPage;
-    // console.log(allDogs)
-    // guardo en la variable declarada una porcion del array total de perros, la cual va a ir desde el indice del primer perro hasta el indice del ultimo perro sin incluirlo
-    const currentDog = allDogs.slice(indexFirstDog, indexLastDog)  // slice divide un array segun lo que le pase por parámetro
+    
+    const currentDog = allDogs.slice(indexFirstDog, indexLastDog)  
 
-    // el paginado setea la pagina en la que yo este y de ahi se modifica lo de arriba
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber);
     }
@@ -88,7 +75,6 @@ export default function HomePage() {
     return (
         <div className="home">
             <Header />
-            {/* puede no ir el div de abajo (ver como queda) */}
             <div>
                 <NavBar 
                 byOrder={handleOrder}
@@ -108,7 +94,7 @@ export default function HomePage() {
                     {currentDog.map(dog => {
                         dog.createdAtDb && console.log(dog);
                         return (
-                            <Card
+                            <Card 
                             id={dog.id}
                             name={dog.name}
                             temperament={dog.temperament}

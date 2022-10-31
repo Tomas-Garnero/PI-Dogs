@@ -18,7 +18,7 @@ export default function Card({image, name, temperament, weight, id, lifeSpan}) {
                     <h2 className="namedog">{`Raza: ${name}`}</h2>
                     <h3 className="tempdog">{`Temperamentos: ${temp}`}</h3>
                     <div>
-                        <img className="image" src={image} alt="" width="200px" height="250px"/>
+                        <img className="image" src={image} alt="" width="300px" height="220px"/>
                     </div>
                     <h4 className="weightdog">{`Peso: Min ${weight[0]} Kg - Max ${weight[1]} Kg`} </h4>
                 </div>

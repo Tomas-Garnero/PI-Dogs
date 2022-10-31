@@ -107,4 +107,13 @@ export function resetPagination(payload) {
     }
 };
 
-
+export function dogDeleteById(id) {
+    return async function () {
+        try {
+            await axios.delete(`http://localhost:3001/dogs/${id}`);
+            alert("Petition Deleted")
+        } catch (error) {
+            console.log(error);
+        }   
+    }
+};
