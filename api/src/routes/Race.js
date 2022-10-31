@@ -113,24 +113,12 @@ router.put("/update/:id", async (req, res) => {
     let life_span = minLife + " - " + maxLife;
 
     let dogObj = {name, height, weight, life_span, image};
-    let dogObjTemp ={temperament};
 
     try {
         const dogForUpdate = await Race.findOne({where: {id: req.params.id}});
         if (!dogForUpdate) return req.status(400).send(notFound);
         await dogForUpdate.update(dogObj);
-
-        // const dogTempUpdate = await Race.findOne({where: {id: req.params.id}});
-        // for (let i = 0; i < dogObjTemp.length; i++) {
-        //     const dTemp = await Temperaments.findOne({
-        //         where: {name: dogObjTemp[i]}
-        //     })
-        //     const aux = await dogTempUpdate.addTemperaments(dTemp);
-        // }
-        // await dogTempUpdate.setTemperaments([]);
-
-        // await dogForUpdate.addTemperaments(dogObjTemp);
-
+        await dogForUpdate.setTemperaments(temperament);
 
         return res.send(dogForUpdate);
     } catch (error) {
