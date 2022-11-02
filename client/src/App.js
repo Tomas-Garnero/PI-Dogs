@@ -8,6 +8,7 @@ import DogCreate from "./components/DogCreate/DogCreate.jsx";
 function App() {
   return (
     <div className="App">
+      <div id='portal'/>
       <Routes>
         <Route path="/" element={<LandinPage />}/>
         <Route exact path="/home" element={<HomePage />}/>

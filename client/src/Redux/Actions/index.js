@@ -79,6 +79,20 @@ export function postDog(payload) {
     }
 };
 
+export function UpdateDog(id, payload) {
+    return async function(dispatch) {
+        try {
+            var json = await axios.put(`http://localhost:3001/dogs/update/${id}`, payload)
+            return dispatch({
+                type: "UPDATE_DOG",
+                payload: json.data
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+
 export function order(payload) {
     return {
         type: "ORDER",
@@ -110,10 +124,11 @@ export function resetPagination(payload) {
 export function dogDeleteById(id) {
     return async function () {
         try {
-            await axios.delete(`http://localhost:3001/dogs/${id}`);
-            alert("Petition Deleted")
+            await axios.delete(`http://localhost:3001/dogs/delete/${id}`);
         } catch (error) {
             console.log(error);
         }   
     }
 };
+
+

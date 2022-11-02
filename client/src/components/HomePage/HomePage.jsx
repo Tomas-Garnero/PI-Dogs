@@ -92,7 +92,6 @@ export default function HomePage() {
             {currentDog.length ? (
                 <div className="container">
                     {currentDog.map(dog => {
-                        dog.createdAtDb && console.log(dog);
                         return (
                             <Card 
                             id={dog.id}

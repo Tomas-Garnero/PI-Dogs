@@ -49,6 +49,12 @@ function rootReducer (state = initialState, action) {
                 ...state, 
                 allDogs: [...state.allDogs, action.payload]
             }
+
+        case "UPDATE_DOG":
+            return {
+                ...state,
+                allDogs: [...state.allDogs, action.payload]
+            }
         
         case "ORDER":
             const dogsDefault = [...state.allDogs];

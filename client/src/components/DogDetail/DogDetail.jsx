@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +8,12 @@ import loadingDog from "../Img/loadingDog.gif"
 import back from "../Img/Back.png";
 import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EditIcon from '@mui/icons-material/Edit';
 import "./DogDetail.css";
-import { width } from "@mui/system";
+import { Box } from "@mui/system";
+import { Tooltip } from "@mui/material";
+import Zoom from "@mui/material/Zoom";
+import EditDog from "../EditDog/EditDog.jsx";
 
 
 export default function DogDetail() {
@@ -16,8 +21,9 @@ export default function DogDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [isOpen, setIsOpen] = useState(false);
+
     const selectedDog = useSelector((state) => state.dogDetail)
-    console.log(selectedDog)
     
     let { id } = useParams();
 
@@ -31,13 +37,16 @@ export default function DogDetail() {
     function handleDelete(e) {
         e.preventDefault();
         dispatch(dogDeleteById(id));
+        alert("Perro borrado correctamente");
         navigate("/home");
     }
 
     return ( 
         <div className="detail-bg">
+
             {selectedDog.length !== 0 ? (
                 <div>
+                    <EditDog open={isOpen} setIsOpen={setIsOpen} />
                     {selectedDog[0].createdAtDb ? (
                         <div className="card-container">
                             <Link to="/home">
@@ -73,9 +82,36 @@ export default function DogDetail() {
                                     <img className="img-dog" src={selectedDog[0].image} alt="" />
                                 </div>
                             </div>
-                            <IconButton onClick={(e) => handleDelete(e)} sx={{p: 0, mt: 2.5, mr: 2.5, width: 72, height: 72}}>
-                                <DeleteForeverIcon sx={{ width: 72, height: 72, color: "white"}}/> 
-                            </IconButton>
+                            <Box display="flex" sx={{flexDirection:"column", }}> 
+                                <Tooltip
+                                    title="Edit"
+                                    TransitionComponent={Zoom}
+                                    TransitionProps={{ timeout: 500 }}
+                                    arrow
+                                    
+                                >
+                                    <IconButton 
+                                        sx={{p: 0, mt: 2.5, mr: 2.5, mb: 63, width: 55, height: 55}}
+                                        onClick={() => setIsOpen(true)}
+                                    >
+                                        <EditIcon sx={{ width: 55, height: 55, color: "white"}} />
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip
+                                    title="Delete"
+                                    TransitionComponent={Zoom}
+                                    TransitionProps={{ timeout: 500 }}
+                                    arrow
+                                    placement="top"
+                                >
+                                    <IconButton  
+                                        sx={{p: 0, mt: 2.5, mr: 2.5, width: 60, height: 60}}
+                                        onClick={(e) => handleDelete(e)}
+                                    >
+                                        <DeleteForeverIcon sx={{ width: 60, height: 60, color: "white"}} /> 
+                                    </IconButton>
+                                </Tooltip>
+                            </Box>
                         </div>
                     ) : (
                         <div className="card-container-noDb">

@@ -1,0 +1,307 @@
+/* .create-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url(./Background-Img1.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+} */
+
+.create-title {
+    display: flex;
+    justify-content: center;
+    margin: 12px;
+    font-family: "Segoe Print";
+    font-size: 35px;
+    color:rgb(252, 226, 192);
+    font-weight: 550;
+    text-shadow: 2px 3px 4px rgb(0, 0, 0);
+    letter-spacing: 0.3ex;
+}
+
+.create-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    overflow:auto;
+    backdrop-filter: blur(6px);
+    margin: 12.5px;
+    margin-bottom: 30px;
+    /* left: 30px;
+    right: 30px;
+    top: 30px;
+    bottom: 30px; */
+    box-shadow: 0ex 0ex 5ex 1ex rgb(0, 0, 0);
+    border-radius: 25px;
+    border: 2px solid #0d303e;
+    width: 95%;
+    height: 75%;
+    font-size: 25px;
+}
+
+.create-container::-webkit-scrollbar{
+    background-color: rgba(196, 133, 16, 0);
+}
+
+.create-container::-webkit-scrollbar-thumb{
+    background-color: rgba(102, 68, 5, 0.589);
+    border-radius: 3ex;
+}
+
+.props-container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 37px;
+    margin-left: 125px;
+    margin-right: 125px;
+    color:rgba(247, 75, 209, 0.842);
+    /* color: rgb(255, 255, 255); */
+    /* color:rgb(252, 226, 192); */
+}
+
+.props-container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr;
+    margin: 35px;
+    color:rgba(247, 75, 209, 0.842);
+}
+
+.label {
+    margin: 10px;
+    text-shadow: 0ex 0ex 1ex rgb(0, 0, 0);
+    /* -webkit-text-stroke: 0.02ex wheat; */
+    -webkit-text-stroke: 0.1ex rgb(56, 40, 10);
+    font-family: "Comic Sans MS";
+}
+
+.breed {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.minWeight {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.maxWeight {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.minHeight {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.maxHeight {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.minLife {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.maxLife {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.image-create {
+    display: grid;
+    /* flex-direction: column; */
+    align-items: baseline;
+    margin: 12.5px;
+}
+
+.inputs {
+    color: rgb(117 122 26);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.603);
+    border-radius: 20px;
+    border: 2px solid #2d4651b8;
+    margin: 18.5px;
+    margin-left: 30px;
+    font-size: 18px;
+    height: 30px;
+    width: 200px;
+}
+
+.div-temperaments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.list-temp {
+    display: flex;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.603);
+    color:rgb(252, 226, 192);
+    border-radius: 20px;
+    width: 220px;
+    height: 35px;
+    box-shadow: 0 0 10px 1px rgb(255, 255, 255),
+                0 0 20px 2px rgb(0, 0, 0),
+                0 0 30px 4px rgb(194, 0, 0),
+                0 0 40px 6px rgba(255, 0, 0, 0.068),
+                0px 0px 50px 8px rgb(117 122 26);
+    margin: 15px;
+}
+
+.item-temp {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px;
+    color: rgb(0, 0, 0);
+    /* text-shadow: 0.1ex 0.1ex 0.05ex cornsilk; */
+    text-shadow: 0ex 0ex 1ex cornsilk;
+    -webkit-text-stroke: 0.02ex wheat;
+    font-family: "Comic Sans MS";
+    font-weight: 600;
+}
+
+.p-items {
+    margin: 35px;
+}
+
+.remove-btn{
+    position:relative;
+    left: 5px;
+    top: 3px;
+    background-color: rgb(149 11 11 / 93%);
+    border-radius: 20px;
+    border-color: transparent;
+    width: 27px;
+    height: 27px;
+}
+
+.remove-btn:hover{
+    transform: scale(1.1);
+}
+
+.icon-remove {
+    position:relative;
+    left: -5px;
+    top: 0.1ex;
+    width: 3ex;
+    height: 3ex;
+}
+
+.div-create-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.create-race {
+    display: flex;
+    position: relative;
+    padding: 15px 30px;
+    border: 2px solid rgba(0, 0, 0, 0.685);
+    margin: 40px;
+    text-transform: uppercase;
+    font-size: 1.1ex;
+    font-weight: 600;
+    letter-spacing: 0.5ex;
+    background-color: rgba(0, 0, 0, 0.603);
+    color: rgb(255, 255, 255);
+    /* box-shadow: 0 0 15px rgb(17, 184, 31),
+                0 0 30px rgb(0, 0, 0),
+                0 0 15px rgb(7, 110, 16); */
+    transition: 0.3s;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.create-race:active:hover {
+    transition-delay: 0s;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px rgb(17, 184, 31),
+                0 0 30px rgb(0, 0, 0),
+                0 0 15px rgb(7, 110, 16),
+}
+
+
+.create-race:disabled {
+    background-color: rgba(0, 0, 0, 0.603);
+    color: rgb(255, 255, 255);
+    cursor: not-allowed;
+    
+}
+
+.create-race:disabled:hover {
+    transition-delay: 0s;
+    color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px rgb(206, 2, 2),
+                0 0 30px rgb(0, 0, 0),
+                0 0 45px rgb(194, 0, 0);
+}
+
+.div-flex {
+    display: flex;
+    align-items: center;
+}
+
+.div-error {
+    margin: 5px;
+    background-color: #00000080;
+    border-radius: 50px;
+    width: auto;
+}
+
+.error {
+    margin: 5px;
+    color:rgb(194, 0, 0);
+    font-family: Arial;
+    font-size: 15px;
+}
+
+.div-errors {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+
+.p-errors {
+    color: red;
+    margin: 10px;
+    font-family: Arial;
+    font-size: 25px;
+    /* border-radius: 15px;
+    background-color: #00000080; */
+}

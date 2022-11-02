@@ -39,7 +39,6 @@ export default function DogCreate() {
         image: "",
         temperament: []
     });
-    // console.log(input)
 
     useEffect(() => {
         dispatch(getTemperaments());
@@ -124,11 +123,11 @@ export default function DogCreate() {
                         <div className="div-flex">
                             <label className="label">Nombre de la Raza:</label>
                             <input 
-                            className="inputs" 
-                            type="text"
-                            name="name"
-                            value={input.name = input.name.substring(0,1).toUpperCase() + input.name.substring(1)}
-                            onChange={(e) => handleChange(e)}
+                                className="inputs" 
+                                type="text"
+                                name="name"
+                                value={input.name = input.name.substring(0,1).toUpperCase() + input.name.substring(1)}
+                                onChange={(e) => handleChange(e)}
                             />
                         </div>
                         <div className="div-error">
