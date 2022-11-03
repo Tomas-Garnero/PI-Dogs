@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 conn.sync({ force: false }).then(() => {  // true se carga siempre // false se carga una vez
-  server.listen(`${PORT}`, () => {
+  server.listen(process.env.PORT, () => {
     console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
   });
 });
