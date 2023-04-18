@@ -1,6 +1,8 @@
-const {API_KEY} = process.env;
 const axios = require("axios");
-const { Temperaments } = require("../db.js");
+
+const { Temperament } = require("../db.js");
+
+const {API_KEY} = process.env;
 
 const getTemperaments = async () => {
     try {
@@ -9,7 +11,6 @@ const getTemperaments = async () => {
         let apiInfo = await apiUrl.data.map(temp => {
             return temp.temperament;
         }).join().split(",");
-        // console.log(apiInfo)
 
         let temps = [];
         apiInfo.map(t => {
@@ -17,10 +18,9 @@ const getTemperaments = async () => {
                 temps.push(t.trim());
             }
         });
-        // console.log(temps)
 
         temps.map(async (d) => {
-            await Temperaments.findOrCreate({
+            await Temperament.findOrCreate({
                 where: {
                     name: d
                 }
@@ -33,6 +33,4 @@ const getTemperaments = async () => {
 };
 
 
-module.exports = {
-    getTemperaments
-};
+module.exports = { getTemperaments };

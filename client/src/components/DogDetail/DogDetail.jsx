@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, clearDetail, dogDeleteById } from "../../Redux/Actions/index.js";
-import loadingDog from "../Img/loadingDog.gif"
-import back from "../Img/Back.png";
 import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
-import "./DogDetail.css";
 import { Box } from "@mui/system";
 import { Tooltip } from "@mui/material";
 import Zoom from "@mui/material/Zoom";
+import Swal from 'sweetalert2';
+import "animate.css";
+
+import { getDetail, clearDetail, dogDeleteById } from "../../Redux/Actions/index.js";
 import EditDog from "../EditDog/EditDog.jsx";
+import loadingDog from "../Img/loadingDog.gif"
+import back from "../Img/Back.png";
+import "./DogDetail.css";
 
 
 export default function DogDetail() {
@@ -37,20 +38,59 @@ export default function DogDetail() {
     function handleDelete(e) {
         e.preventDefault();
         dispatch(dogDeleteById(id));
-        alert("Perro borrado correctamente");
-        navigate("/home");
-    }
+        Swal.fire({
+            title: '¿Estas seguro?',
+            text: "No sera posible revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#4d1a5a',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!',
+            customClass: {
+                title: "swal-title",
+                popup: "swal-popup",
+                text: "swal-text"
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Eliminado!',
+                    text: 'El perro ha sido eliminado',
+                    icon: 'success',
+                    customClass: {
+                        title: "swal-title",
+                        popup: "swal-popup",
+                        text: "swal-text"
+                    },
+                    showClass: {
+                        popup: "animate__ animated animate__fadeInDown"
+                    },
+                    hideClass: {
+                        popup: "animate__animated animate__fadeOutUp"
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate("/home");
+                    }
+                });
+            };
+        })
+    };
 
     return ( 
         <div className="detail-bg">
 
             {selectedDog.length !== 0 ? (
                 <div>
-                    <EditDog open={isOpen} setIsOpen={setIsOpen} />
+                    <EditDog open={isOpen} setIsOpen={setIsOpen} dogDetail={selectedDog} />
                     {selectedDog[0].createdAtDb ? (
                         <div className="card-container">
                             <Link to="/home">
-                                <img className="img-back" src={back} alt="" />
+                                <img 
+                                    className="img-back animate__animated animate__shakeY animate__infinite animate__slower" 
+                                    src={back} 
+                                    alt="back" 
+                                />
                             </Link>
                             <div className="card-detail">
                                 <h1 className="name">{selectedDog[0].name}</h1>
@@ -116,7 +156,11 @@ export default function DogDetail() {
                     ) : (
                         <div className="card-container-noDb">
                             <Link to="/home">
-                                <img className="img-back" src={back} alt="" />
+                                <img 
+                                    className="img-back animate__animated animate__shakeY animate__infinite animate__slower" 
+                                    src={back} 
+                                    alt="back" 
+                                />
                             </Link>
                             <div className="card-detail-noDb">
                                 <h1 className="name">{selectedDog[0].name}</h1>

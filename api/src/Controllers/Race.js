@@ -1,13 +1,16 @@
-const {API_KEY} = process.env;
 const axios = require("axios");
-const { Race, Temperaments } = require("../db.js");
+
+const { Race, Temperament } = require("../db.js");
+
+const {API_KEY} = process.env;
+
 
 const getApiInfo = async () => {
     try {
-        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-
+        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?breeds?limit=10&page=0&api_key=${API_KEY}`);
+        // 
         let apiInfo = await apiUrl.data.map(dog => {
-
+            const {id, name, image, temperament} = dog;
             let weightMin_Max = [];
 
             dog.weight.metric.split("-")?.forEach(element => {
@@ -17,16 +20,16 @@ const getApiInfo = async () => {
             if (weightMin_Max[1] === weightMin_Max[0]) {
                 weightMin_Max.shift(weightMin_Max);
             }
-            // console.log(weigthMin_Max)
-            
+
             return {
-                id: dog.id,
-                name: dog.name,
+                id,
+                name,
                 weight: weightMin_Max,
-                image: dog.image.url,
-                temperament: dog.temperament
+                image: image.url,
+                temperament,
             };
         });
+
         return apiInfo;
 
     } catch (error) {
@@ -38,8 +41,8 @@ const getDBInfo = async () => {
     try {
         let dogDB = await Race.findAll({
             include: {
-                // Incluime el modelo temperaments
-                model: Temperaments,
+                // Incluime el modelo temperament
+                model: Temperament,
                 // Y de este modelo traeme los siguientes atributos
                 attributes: ["name"],
                 // Mediante los atributos
@@ -48,11 +51,11 @@ const getDBInfo = async () => {
                 }
             }
         });
-        console.log(dogDB)
 
         let dogInfo = await dogDB.map(dog => {
-
+            const {id, name, image, createdAtDb } = dog;
             let weightMin_Max = [];
+
             dog.weight.split("-")?.forEach(element => {
                 weightMin_Max.push(parseInt(element.trim()));
             });
@@ -61,17 +64,18 @@ const getDBInfo = async () => {
             }
 
             return {
-                id: dog.id,
-                name: dog.name,
+                id,
+                name,
                 weight: weightMin_Max,
-                image: dog.image,
+                image,
                 temperament: dog.Temperaments?.reduce((prev, curr) => {
                     prev += curr.name + ", ";
                     return prev;
                 }, ""),
-                createdAtDb: dog.createdAtDb
+                createdAtDb
             };
         });
+
         return dogInfo;
 
     } catch (error) {
@@ -86,6 +90,7 @@ const getAllDogs = async () => {
         let allInfo = apiInfo.concat(dbInfo);
 
         return allInfo;
+
     } catch (error) {
         console.log(error);
     }
@@ -93,9 +98,10 @@ const getAllDogs = async () => {
 
 const getDetailsApiInfo = async () => {
     try {
-        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?limit=5&page=0?api_key=${API_KEY}`);
 
         let apiInfo = await apiUrl.data.map(dog => {
+            const { id, name, image, temperament } = dog;
 
             let weightMin_Max = [];
 
@@ -116,7 +122,6 @@ const getDetailsApiInfo = async () => {
             if (heightMin_Max[1] === heightMin_Max[0]) {
                 heightMin_Max.shift(heightMin_Max);
             }
-            // console.log("Altura:", heightMin_Max)
 
             let life = [];
 
@@ -127,19 +132,18 @@ const getDetailsApiInfo = async () => {
             if (life[1] === life[0]) {
                 life.shift(life);
             }
-            // console.log("Vida:", life)
 
             return {
-                id: dog.id,
-                name: dog.name,
+                id,
+                name,
                 height: heightMin_Max,
                 weight: weightMin_Max,
                 life_span: life,
-                image: dog.image.url,
-                temperament: dog.temperament
+                image: image.url,
+                temperament
             };
         });
-        // console.log(apiInfo)
+
         return apiInfo;
 
     } catch (error) {
@@ -147,27 +151,12 @@ const getDetailsApiInfo = async () => {
     }
 };
 
-// var promise = new Promise(function(resolve, reject) {
-//     const data = fetch('www.UnaAPICualquiera.com');
-
-//     if(data) {resolve(data)} 
-//     else {reject('No conseguí la data')}
-
-// })
-
-// promise
-// 		.then(succesfullHandler)
-// 		.then(succesfullHandler)
-// 		.then(succesfullHandler)
-// 		.catch(err => console.log(err))
-
-
 const getDetailsDBInfo = async () => {
     try {
         let dogDB = await Race.findAll({
             include: {
-                // Incluime el modelo temperaments
-                model: Temperaments,
+                // Incluime el modelo temperament
+                model: Temperament,
                 // Y de este modelo traeme los siguientes atributos
                 attributes: ["name"],
                 // Mediante los atributos
@@ -178,7 +167,7 @@ const getDetailsDBInfo = async () => {
         });
 
         let dogInfo = await dogDB.map(dog => {
-
+            const { id, name, image, createdAtDb } = dog;
             let weightMin_Max = [];
 
             dog.weight.split("-")?.forEach(element => {
@@ -210,19 +199,20 @@ const getDetailsDBInfo = async () => {
             }
 
             return {
-                id: dog.id,
-                name: dog.name,
+                id,
+                name,
                 height: heightMin_Max,
                 weight: weightMin_Max,
                 life_span: life,
-                image: dog.image,
+                image,
                 temperament: dog.Temperaments?.reduce((prev, curr) => {
                     prev += curr.name + ", ";
                     return prev;
                 }, ""),
-                createdAtDb: dog.createdAtDb,
+                createdAtDb
             };
         });
+
         return dogInfo;
 
     } catch (error) {
@@ -237,41 +227,11 @@ const getDetailsDogs = async () => {
         let allInfo = apiInfo.concat(dbInfo);
 
         return allInfo;
+
     } catch (error) {
         console.log(error);
     }
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = {
-    getAllDogs,
-    getDetailsDogs
-};
+module.exports = { getAllDogs, getDetailsDogs };

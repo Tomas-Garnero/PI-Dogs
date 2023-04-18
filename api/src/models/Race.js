@@ -37,7 +37,8 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "../assets/DogImg.jpg"
     },
 
     createdAtDb: {
@@ -47,6 +48,5 @@ module.exports = (sequelize) => {
     }
   }, {
     timestamps: false,  // don't add the timestamp attributes (updatedAt, createdAt)
-    freezeTableName: true  // disable the modification of table names (into plural)
   });
 };

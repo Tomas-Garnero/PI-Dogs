@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
     getDogs,
     getTemperaments,
@@ -25,14 +26,12 @@ export default function HomePage() {
     const pagination = useSelector((state) => state.paginado);
     const allTemperaments = useSelector((state) => state.temperaments);
 
-    const [ordering , setOrdering] = useState("");
-
     const [currentPage, setCurrentPage] = useState(1);
     
     const [dogsPerPage, setDogsPerPage] = useState(8);
     
     const indexLastDog = pagination.current * dogsPerPage;  
-   
+    
     const indexFirstDog = indexLastDog - dogsPerPage;
     
     const currentDog = allDogs.slice(indexFirstDog, indexLastDog)  
@@ -54,21 +53,19 @@ export default function HomePage() {
         e.preventDefault();
         dispatch(filterByTemperament(e.target.value));
         setCurrentPage(1);
-        // setOrdering(`Ordenado ${e.target.value}`);
+
     }
 
     function handleFilterCreated(e) {
         e.preventDefault();
         dispatch(filterByCreated(e.target.value));
         setCurrentPage(1);
-        // setOrdering(`Ordenado ${e.target.value}`);
     }
 
     function handleOrder(e) {
         e.preventDefault();
         dispatch(order(e.target.value));
         setCurrentPage(1);
-        // setOrdering(`Ordenado ${e.target.value}`);
     }
 
 
@@ -77,16 +74,16 @@ export default function HomePage() {
             <Header />
             <div>
                 <NavBar 
-                byOrder={handleOrder}
-                byTemperament={handleFilterTemperament}
-                byCreated={handleFilterCreated}
+                    byOrder={handleOrder}
+                    byTemperament={handleFilterTemperament}
+                    byCreated={handleFilterCreated}
                 />
             </div>
             <div className="navbar">
                 <Pagination
-                dogsPerPage={dogsPerPage}
-                allDogs={allDogs.length}
-                paginado={paginado}
+                    dogsPerPage={dogsPerPage}
+                    allDogs={allDogs.length}
+                    paginado={paginado}
                 />
             </div>
             {currentDog.length ? (
@@ -94,13 +91,13 @@ export default function HomePage() {
                     {currentDog.map(dog => {
                         return (
                             <Card 
-                            id={dog.id}
-                            name={dog.name}
-                            temperament={dog.temperament}
-                            weight={dog.weight}
-                            height={dog.height}
-                            image={dog.image}
-                            key={dog.id}
+                                id={dog.id}
+                                name={dog.name}
+                                temperament={dog.temperament}
+                                weight={dog.weight}
+                                height={dog.height}
+                                image={dog.image}
+                                key={dog.id}
                             />
                         )
                     })}
@@ -111,6 +108,13 @@ export default function HomePage() {
                 </div>
             )
             }
+            <div className="navbar">
+                <Pagination
+                    dogsPerPage={dogsPerPage}
+                    allDogs={allDogs.length}
+                    paginado={paginado}
+                />
+            </div>
         </div>
     )
 };

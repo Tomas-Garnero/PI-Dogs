@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
-import { getDogs, getTemperaments } from "../../Redux/Actions/index.js";
+
+import { getDogs, getTemperaments, filterByTemperament, filterByCreated, order } from "../../Redux/Actions/index.js";
 import "../NavBar/NavBar.css";
+import "animate.css";
 
 
 export default function NavBar({byOrder, byTemperament, byCreated}) {
@@ -19,12 +21,15 @@ export default function NavBar({byOrder, byTemperament, byCreated}) {
         }
         return 0;
     })
-    // console.log(allTemperaments)
 
     useEffect(() => {
         dispatch(getDogs());
         dispatch(getTemperaments());
     }, []);
+
+    const [ input, setInput ] = useState({
+
+    })
 
     function handleClick(e) {
         e.preventDefault();
@@ -34,7 +39,12 @@ export default function NavBar({byOrder, byTemperament, byCreated}) {
 
     return (
         <div className="nav-bar">
-            <button className="reload" onClick={(e) => handleClick(e)}>Cargar Razas</button>
+            <button 
+                className="reload animate__animated animate__pulse animate__infinite animate__slow" 
+                onClick={(e) => handleClick(e)}
+            >
+                Cargar Razas
+            </button>
             <div className="divselect">
 
                 <select className="select" onChange={(e) => byOrder(e)}>

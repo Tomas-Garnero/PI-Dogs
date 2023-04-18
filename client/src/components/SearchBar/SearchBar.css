@@ -8,7 +8,7 @@
     width: 300px;
 }
 
-.input-search{
+.input-search {
     width: 175px;
     height: 25px;
     margin: 5px;
@@ -27,7 +27,7 @@
 
 }
 
-.btn-search{
+.btn-search {
     cursor: pointer;
     border: none;
     /* width: 4.75ex; */
@@ -38,7 +38,7 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
-.btn-search:hover{
+.btn-search:hover {
     transform: scale(1.2);
 }
 

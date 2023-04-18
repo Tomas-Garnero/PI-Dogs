@@ -2,13 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { getTemperaments, postDog} from "../../Redux/Actions/index.js";
-import validate from "./validations.js";
+import Swal from 'sweetalert2';
+
+import { getTemperaments, postDog } from "../../Redux/Actions/index.js";
 import homeIcon from "../Img/Home.gif";
 import reload from "../Img/Reload.gif";
 import remove from "../Img/Remove.png";
-
+import validate from "./validations.js";
 import "./DogCreate.css";
+
 
 
 export default function DogCreate() {
@@ -77,21 +79,41 @@ export default function DogCreate() {
         setErrors(errorSaver);
         if (Object.values(errorSaver).length === 0) {
             dispatch(postDog(input));
-            navigate("/home");
-            alert("Raza creada!");
-            setInput({
-                name: "",
-                minWeight: "",
-                maxWeight: "",
-                minHeight: "",
-                maxHeight: "",
-                minLife: "",
-                maxLife: "",
-                image: "",
-                temperament: []
-            })
-        }
-    }
+            Swal.fire({
+                title: "Creada",
+                text: 'La raza ha sido creada con exito!',
+                icon: 'success',
+                confirmButtonText: 'Return to home',
+                confirmButtonColor: "#4d1a5a",
+                customClass: {
+                    title: "swal-title",
+                    popup: "swal-popup",
+                    text: "swal-text"
+                },
+                showClass: {
+                    popup: "animate__ animated animate__fadeInDown"
+                },
+                hideClass: {
+                    popup: "animate__animated animate__fadeOutUp"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/home");
+                    setInput({
+                        name: "",
+                        minWeight: "",
+                        maxWeight: "",
+                        minHeight: "",
+                        maxHeight: "",
+                        minLife: "",
+                        maxLife: "",
+                        image: "",
+                        temperament: []
+                    });
+                };
+            });
+        };
+    };
 
 
     return (
@@ -99,13 +121,13 @@ export default function DogCreate() {
 
             <div className="div-refresh">
                 
-                <div className="div-home-btn">
-                    <Link className="link-home" to="/home">
-                        <img className="icon-home" src={homeIcon} alt="" width="35px"/>
+                <div className="div-home-btn animate__animated animate__fadeInDown animate__slow" to="/home">
+                    <Link className="link-home">
+                        <img className="icon-home" src={homeIcon} alt="" width="35px" />
                         ⬅Home
                     </Link>
                 </div>
-                <div>
+                <div className="animate__animated animate__fadeInDown animate__slow">
                     <button className="refresh-btn" type="submit" onClick={refreshPage}>
                         <img className="refresh-icon" src={reload} alt="" width="35px"/>
                     </button>

@@ -371,6 +371,18 @@
     margin: 10px;
     font-family: Arial;
     font-size: 25px;
-    /* border-radius: 15px;
-    background-color: #00000080; */
+}
+
+.swal-popup {
+    background-color: #19191a !important;
+    border-radius: 20px !important;
+}
+
+.swal2-title {
+    color: #fff !important;
+    font-size: 1.5rem;
+}
+
+.swal2-html-container {
+    color: #fff !important
 }

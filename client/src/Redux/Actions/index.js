@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from 'sweetalert2';
 
 export function getDogs() {
     return async function(dispatch) {
@@ -24,7 +25,22 @@ export function getDogName(name) {
             });
         } catch(error){
             console.log(error);
-            alert (`El perro no se encontro! ERROR: ${error}`);
+            Swal.fire({
+                title: "No encontrado",
+                text: "La raza no se encontró!",
+                icon: "error",
+                customClass: {
+                    title: "swal-title",
+                    popup: "swal-popup",
+                    text: "swal-text"
+                },
+                showClass: {
+                    popup: "animate__ animated animate__fadeInDown"
+                },
+                hideClass: {
+                    popup: "animate__animated animate__fadeOutUp"
+                }
+            });
         }
     }
 };
@@ -39,7 +55,22 @@ export function getDetail(id) {
             });
         } catch(error) {
             console.log(error);
-            alert (`No se encontro el detalle del perro! ERROR: ${error}`);
+            Swal.fire({
+                title: "No encontrado",
+                text: "El detalle del perro no se encontró!",
+                icon: "error",
+                customClass: {
+                    title: "swal-title",
+                    popup: "swal-popup",
+                    text: "swal-text"
+                },
+                showClass: {
+                    popup: "animate__ animated animate__fadeInDown"
+                },
+                hideClass: {
+                    popup: "animate__animated animate__fadeOutUp"
+                }
+            });
         }
     }
 };

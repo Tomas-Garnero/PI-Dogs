@@ -18,11 +18,9 @@ function rootReducer (state = initialState, action) {
             };
         
         case "GET_DOG_NAME":
-            // const dog = [...action.payload];
             return {
                 ...state,
                 dogs: action.payload
-                // dogs: dog
             }
         
         case "GET_DETAIL":

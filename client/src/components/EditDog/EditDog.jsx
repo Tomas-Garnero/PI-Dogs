@@ -1,25 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-
-import { Modal, Typography } from "@mui/material";
-
-
-import { useState, useEffect } from "react";
-
+import { Modal } from "@mui/material";
+import { Container } from "@mui/system";
+import Swal from 'sweetalert2';
 
 import { getTemperaments, postDog, UpdateDog} from "../../Redux/Actions/index.js";
 import validate from "./validations.js";
-import reload from "../Img/Reload.gif";
 import remove from "../Img/Remove.png";
-
 import "./DogEdit.css";
-import { Container } from "@mui/system";
 
 
-export default function EditDog({open, setIsOpen}) {
+export default function EditDog({open, setIsOpen, dogDetail}) {
+
+    const { name, weight, height, life_span, image } = dogDetail[0];
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -38,14 +33,14 @@ export default function EditDog({open, setIsOpen}) {
 
     const [errors, setErrors] = useState({});
     const [input, setInput] = useState({
-        name: "",
-        minWeight: "",
-        maxWeight: "",
-        minHeight: "",
-        maxHeight: "",
-        minLife: "",
-        maxLife: "",
-        image: "",
+        name,
+        minWeight: weight[0],
+        maxWeight: weight[1],
+        minHeight: height[0],
+        maxHeight: height[1],
+        minLife: life_span[0],
+        maxLife: life_span[1],
+        image,
         temperament: []
     });
 
@@ -82,21 +77,41 @@ export default function EditDog({open, setIsOpen}) {
         setErrors(errorSaver);
         if (Object.values(errorSaver).length === 0) {
             dispatch(UpdateDog(id, input));
-            navigate("/home");
-            alert("Raza editada!");
-            setInput({
-                name: "",
-                minWeight: "",
-                maxWeight: "",
-                minHeight: "",
-                maxHeight: "",
-                minLife: "",
-                maxLife: "",
-                image: "",
-                temperament: []
-            })
-        }
-    }
+            Swal.fire({
+                title: "Editada",
+                text: 'La raza ha sido editada correctamente!',
+                icon: 'success',
+                confirmButtonText: 'Return to home',
+                confirmButtonColor: "#4d1a5a",
+                customClass: {
+                    title: "swal-title",
+                    popup: "swal-popup",
+                    text: "swal-text"
+                },
+                showClass: {
+                    popup: "animate__ animated animate__fadeInDown"
+                },
+                hideClass: {
+                    popup: "animate__animated animate__fadeOutUp"
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/home");
+                    setInput({
+                        name: "",
+                        minWeight: "",
+                        maxWeight: "",
+                        minHeight: "",
+                        maxHeight: "",
+                        minLife: "",
+                        maxLife: "",
+                        image: "",
+                        temperament: []
+                    });
+                };
+            });
+        };
+    };
 
     const handleClose = () => setIsOpen(false);
     const handleOpen = () => setIsOpen(true);
