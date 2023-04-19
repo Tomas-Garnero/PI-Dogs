@@ -13,7 +13,7 @@ const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 //         host: DB_HOST,
 //         port: 5432,
 //         username: DB_USER,
-//         password: DB_PASSWORD,
+//         password: DB_PASS,
 //         pool: {
 //           max: 3,
 //           min: 1,
@@ -40,7 +40,7 @@ const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 // });
 
 const sequelize = new Sequelize(`${DB_NAME}`, `${DB_USER}`, `${DB_PASS}`, {
-    host: 'localhost',
+    host: DB_HOST,
     dialect: "postgres"
 });
 

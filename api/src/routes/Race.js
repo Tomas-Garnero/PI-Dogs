@@ -96,7 +96,7 @@ router.delete("/delete/:id", async (req, res) => {
 });
 
 router.put("/update/:id", async (req, res) => {
-    if (!req.params.id) return res.status(400).send({ err: "Bad Request"});
+    if (!req.params.id) return res.status(400).send({ err: "Bad Request" });
 
     const {
         name,
@@ -116,17 +116,12 @@ router.put("/update/:id", async (req, res) => {
     let weight = minWeight + " - " + maxWeight;
     let life_span = minLife + " - " + maxLife;
 
-    let dogObj = {
-        name, 
-        height, 
-        weight, 
-        life_span, 
-        image
-    }
+    let dogObj = { name, height, weight, life_span, image };
 
     try {
         const dogForUpdate = await Race.findOne({where: {id: req.params.id}});
-        if (!dogForUpdate) return req.status(400).send({ err: "Not Found"});
+        if (!dogForUpdate) return res.status(400).send({ err: "Dog Not Found" });
+
         await dogForUpdate.update(dogObj);
         await dogForUpdate.setTemperaments(temperament);
 

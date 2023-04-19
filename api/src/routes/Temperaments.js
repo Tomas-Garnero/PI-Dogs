@@ -10,7 +10,6 @@ router.get("/", async (req, res) => {
         await getTemperaments();
 
         const allTemperaments = await Temperament.findAll();
-        // const filteredTemperaments = await allTemperaments.map(obj => obj.name);
 
         if (allTemperaments) {
             res.status(200).send(allTemperaments)
