@@ -7,7 +7,7 @@ const {API_KEY} = process.env;
 
 const getApiInfo = async () => {
     try {
-        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?breeds?limit=10&page=0&api_key=${API_KEY}`);
+        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?breeds?api_key=${API_KEY}`);
         
         let apiInfo = await apiUrl.data.map(dog => {
             const {id, name, image, temperament} = dog;
@@ -98,7 +98,7 @@ const getAllDogs = async () => {
 
 const getDetailsApiInfo = async () => {
     try {
-        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?limit=5&page=0?api_key=${API_KEY}`);
+        let apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
 
         let apiInfo = await apiUrl.data.map(dog => {
             const { id, name, image, temperament } = dog;

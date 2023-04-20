@@ -110,13 +110,19 @@ router.put("/update/:id", async (req, res) => {
         temperament
     } = req.body;
 
-    if (!name || !minHeight || !maxHeight || !minWeight || !maxWeight || !minLife || !maxLife || !image || !temperament) return res.status(400).send({ err: "Bad Request"});
+    if (!name || !minHeight || !maxHeight || !minWeight || !maxWeight || !minLife || !maxLife || !temperament) return res.status(400).send({ err: "Bad Request"});
 
     let height = minHeight + " - " + maxHeight;
     let weight = minWeight + " - " + maxWeight;
     let life_span = minLife + " - " + maxLife;
 
-    let dogObj = { name, height, weight, life_span, image };
+    let dogObj = { 
+        name, 
+        height, 
+        weight, 
+        life_span, 
+        image: image ? image : "https://i.pinimg.com/originals/5e/f4/19/5ef419dd37c578ccf4a09a0be10e2977.jpg"
+    };
 
     try {
         const dogForUpdate = await Race.findOne({where: {id: req.params.id}});
