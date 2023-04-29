@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import IconButton from "@mui/material/IconButton";
@@ -10,7 +10,7 @@ import Zoom from "@mui/material/Zoom";
 import Swal from 'sweetalert2';
 import "animate.css";
 
-import { getDetail, clearDetail, dogDeleteById } from "../../Redux/Actions/index.js";
+import { getDetail, clearDetail, dogDeleteById } from "../../Redux/Actions";
 import EditDog from "../EditDog/EditDog.jsx";
 import loadingDog from "../Img/loadingDog.gif"
 import back from "../Img/Back.png";
@@ -128,7 +128,6 @@ export default function DogDetail() {
                                     TransitionComponent={Zoom}
                                     TransitionProps={{ timeout: 500 }}
                                     arrow
-                                    
                                 >
                                     <IconButton 
                                         sx={{p: 0, mt: 2.5, mr: 2.5, mb: 63, width: 55, height: 55}}

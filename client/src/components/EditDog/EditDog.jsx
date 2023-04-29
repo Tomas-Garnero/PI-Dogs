@@ -6,7 +6,7 @@ import { Modal } from "@mui/material";
 import { Container } from "@mui/system";
 import Swal from 'sweetalert2';
 
-import { getTemperaments, postDog, UpdateDog} from "../../Redux/Actions/index.js";
+import { getTemperaments, UpdateDog} from "../../Redux/Actions/index.js";
 import validate from "./validations.js";
 import remove from "../Img/Remove.png";
 import "./DogEdit.css";

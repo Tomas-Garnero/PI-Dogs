@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector} from "react-redux";
 
-import { getDogs, getTemperaments, filterByTemperament, filterByCreated, order } from "../../Redux/Actions/index.js";
+import { getDogs, getTemperaments } from "../../Redux/Actions";
 import "../NavBar/NavBar.css";
 import "animate.css";
 
 
-export default function NavBar({byOrder, byTemperament, byCreated}) {
+export default function NavBar({ byOrder, byTemperament, byCreated }) {
 
     const dispatch = useDispatch();
-
+    
     const allTemperaments = useSelector((state) => state.temperaments);
     allTemperaments.sort(function (a, b) {
         if (a > b) {
@@ -21,6 +20,11 @@ export default function NavBar({byOrder, byTemperament, byCreated}) {
         }
         return 0;
     })
+    
+    function handleClick(e) {
+        e.preventDefault();
+        dispatch(getDogs());
+    }
 
     useEffect(() => {
         dispatch(getDogs());
@@ -30,12 +34,6 @@ export default function NavBar({byOrder, byTemperament, byCreated}) {
     const [ input, setInput ] = useState({
 
     })
-
-    function handleClick(e) {
-        e.preventDefault();
-        dispatch(getDogs());
-    }
-
 
     return (
         <div className="nav-bar">

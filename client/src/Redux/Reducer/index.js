@@ -32,7 +32,6 @@ function rootReducer (state = initialState, action) {
         case "CLEAR_DETAIL":
             return {
                 ...state,
-                // dogDetail: []
                 dogDetail: action.payload
             }
         
@@ -151,6 +150,6 @@ function rootReducer (state = initialState, action) {
         default:
             return state;
     }
-}
+};
 
 export default rootReducer;

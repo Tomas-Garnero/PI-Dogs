@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,11 +8,11 @@ import {
     filterByCreated,
     order,
     resetPagination
-} from "../../Redux/Actions/index.js";
-import Card from "../Card/Card.jsx";
-import Pagination from "../Pagination/Pagination.jsx";
-import NavBar from "../NavBar/NavBar.jsx";
-import Header from "../Header/Header.jsx";
+} from "../../Redux/Actions";
+import Card from "../Card/Card";
+import Pagination from "../Pagination/Pagination";
+import NavBar from "../NavBar/NavBar";
+import Header from "../Header/Header";
 import loading from "../Img/loading.gif"
 import "./HomePage.css";
 
@@ -24,7 +23,6 @@ export default function HomePage() {
 
     const allDogs = useSelector((state) => state.dogs);
     const pagination = useSelector((state) => state.paginado);
-    const allTemperaments = useSelector((state) => state.temperaments);
 
     const [currentPage, setCurrentPage] = useState(1);
     
@@ -106,8 +104,7 @@ export default function HomePage() {
                 <div>
                     <img className="loading" src={loading} alt="Cargando..." />
                 </div>
-            )
-            }
+            )}
             <div className="navbar">
                 <Pagination
                     dogsPerPage={dogsPerPage}

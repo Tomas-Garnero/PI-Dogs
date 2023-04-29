@@ -1,10 +1,9 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 
-import { getTemperaments, postDog } from "../../Redux/Actions/index.js";
+import { getTemperaments, postDog } from "../../Redux/Actions";
 import homeIcon from "../Img/Home.gif";
 import reload from "../Img/Reload.gif";
 import remove from "../Img/Remove.png";
@@ -273,14 +272,12 @@ export default function DogCreate() {
                 </div>
 
                 <div className="div-temperaments">
-                    <div>
-                        <select className="list-temp" onChange={(e) => handleSelect(e)}>
-                            <option hidden>Temperamentos de la Raza:</option>
-                            {temperament.map(temp => (
-                                <option value={temp.id} key={temp.id}>{temp.name}</option>
-                            ))}
-                        </select>
-                    </div>
+                    <select className="list-temp" onChange={(e) => handleSelect(e)}>
+                        <option hidden>Temperamentos de la Raza:</option>
+                        {temperament.map(temp => (
+                            <option value={temp.id} key={temp.id}>{temp.name}</option>
+                        ))}
+                    </select>
 
                     <div className="item-temp">
                         {input.temperament.map(e => {
@@ -297,24 +294,23 @@ export default function DogCreate() {
                 </div>
 
                 {(Object.values(errors).length !== 0) &&
-                        <div className="div-errors">
+                    <div className="div-errors">
                         <p className="p-errors">
                             Completa los campos con valores que cumplan las condiciones para crear tu Raza
                         </p> 
-                        </div>
+                    </div>
                 }
 
                 <div className="div-create-btn">
-                        <button 
+                    <button 
                         className="create-race" 
                         type="submit"
                         disabled={input.temperament.length < 1 || input.temperament.length >= 15 ? true : false}
                         onClick={(e) => handleSubmit(e)}
-                        >
-                            CREAR RAZA
-                        </button>
+                    >
+                        CREAR RAZA
+                    </button>
                 </div>
-
             </div>
         </div>
     )
